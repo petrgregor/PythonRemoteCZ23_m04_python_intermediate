@@ -11,6 +11,7 @@ class Person:
 
 class Employee(Person):
     def __init__(self, name, age, rate, num_of_hours):
+        #super().__init__(name, age)
         Person.__init__(self, age=age, name=name)
         self.rate = rate
         self.num_of_hours = num_of_hours
