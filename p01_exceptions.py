@@ -127,4 +127,28 @@ try:
 except ValueError:
     print("ERROR: Square root is not possible to count for negative number.")
 
+
+class CustomException(Exception):
+    def __init__(self):
+        message = "Square root is not possible to count for negative number."
+        super().__init__(message)
+
+
+def sqrt(num):
+    try:
+        if num < 0:
+            raise CustomException()
+        return num**(1/2)
+    except TypeError as e:
+        print(f"ERROR: {repr(e)}")
+
+
+num = -8
+try:
+    print(f"sqrt({num}) = {sqrt(num)}")
+except CustomException as e:
+    print(f"ERROR: Custom exception: repr='{repr(e)}', str='{str(e)}'")
+#except TypeError:
+#    print("ERROR: TypeError")
+
 print("done")
