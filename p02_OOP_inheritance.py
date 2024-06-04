@@ -20,7 +20,7 @@ class Employee(Person):
         return f"{super().__str__()} with finance {self.show_finance()}"
 
     def show_finance(self):
-        return self.rate * self.num_of_hours
+        return f"Employee has finance: {self.rate * self.num_of_hours}"
 
 
 class Student(Person):
@@ -32,7 +32,7 @@ class Student(Person):
         return f"{super().__str__()} with finance {self.show_finance()}"
 
     def show_finance(self):
-        return self.scholarship
+        return f"Student has finance: {self.scholarship}"
 
 
 class WorkingStudent(Employee, Student):
@@ -44,7 +44,14 @@ class WorkingStudent(Employee, Student):
         return f"{Person.__str__(self)} with finance {self.show_finance()}"
 
     def show_finance(self):
-        return self.rate * self.num_of_hours + self.scholarship
+        return f"Working student has finance: {self.rate * self.num_of_hours + self.scholarship}"
+
+
+def check_finance(obj):
+    try:
+        print(obj.show_finance())
+    except AttributeError as e:
+        print(f"ERROR: {e}")
 
 
 os1 = Person("John", 54)
@@ -55,3 +62,11 @@ os3 = Student("Agatha", 22, 1000)
 print(os3)
 os4 = WorkingStudent("Monica", 24, 9.5, 70, 550)
 print(os4)
+
+check_finance(os1)
+check_finance(os2)
+check_finance(os3)
+check_finance(os4)
+check_finance(5)
+
+print('END')
