@@ -9,11 +9,16 @@ class Person:
 
 
 class Student(Person):
+    variable = 2
+    number_of_students = 0
+    id_of_this_student = 0
 
     def __init__(self, name, age, scholarship):
         if self.is_name_correct(name):
             Person.__init__(self, name, age)
             self.scholarship = scholarship
+            Student.number_of_students += 1
+            self.id_of_this_student = Student.number_of_students
         else:
             raise TypeError
 
@@ -35,7 +40,7 @@ class Student(Person):
     @staticmethod
     def is_name_correct(name):
         print("Static method 'is_name_correct' from class Student")
-        if name[0].isupper() and len(name) > 3:
+        if name[0].isupper() and len(name) >= 3:
             return True
         return False
 
@@ -59,3 +64,25 @@ print(student2)
 
 student3 = Student.create_from_string("Max 21 600")
 print(student3)
+
+# static variable in class
+print(student1.variable)
+print(Student.variable)
+
+student1.variable = 1
+print(student1.variable)
+print(Student.variable)
+
+Student.variable = 10
+print(student1.variable)
+print(Student.variable)
+
+print(Student.number_of_students)
+student4 = Student('Roman', 25, 0)
+print(f"Student.number_of_students: {Student.number_of_students}")
+print(f"student4.number_of_students: {student4.number_of_students}")
+
+print(f"student1.id_of_this_student: {student1.id_of_this_student}")
+print(f"student2.id_of_this_student: {student2.id_of_this_student}")
+print(f"student3.id_of_this_student: {student3.id_of_this_student}")
+print(f"student4.id_of_this_student: {student4.id_of_this_student}")
