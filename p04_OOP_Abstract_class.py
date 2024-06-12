@@ -79,6 +79,13 @@ class Rectangle(Figure):
 
 
 # TODO: class Triangle
+class Triangle(Figure):
+
+    def circuit(self):
+        pass
+
+    def area(self):
+        pass
 
 
 rectangle1 = Rectangle(5, 6)
